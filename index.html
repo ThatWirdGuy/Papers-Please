@@ -1,7 +1,34 @@
-<script src="https://kamil-da-goat.github.io/ruffle/"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Run SWF with Ruffle</title>
+</head>
+<body>
+    <h1>My SWF File with Ruffle</h1>
 
-<div style="width: 800px; height: 600px; margin: 0 auto;">
-  <embed
-    src="https://cdn.jsdelivr.net/gh/ThatWirdGuy/Papers-Please@main/PapersPlease2.swf" type="application/x-shockwave-flash" width="100%" height="100%"
-  ></embed>
-</div>
+    <!-- Container for the SWF -->
+    <div id="flash-container">
+        <embed src="PapersPlease2.swf" width="800" height="600">
+    </div>
+
+    <!-- Load Ruffle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@0.7.1/ruffle.min.js"></script>
+
+    <script>
+        // Initialize Ruffle
+        const ruffle = window.RufflePlayer.new();
+        const container = document.getElementById("flash-container");
+
+        // Create a player instance
+        const player = ruffle.createPlayer();
+        container.innerHTML = ""; // Clear existing embed
+        container.appendChild(player);
+
+        // Load your SWF file
+        player.load("PapersPlease2.swf").catch(err => {
+            console.error("Failed to load SWF:", err);
+        });
+    </script>
+</body>
+</html>
